@@ -20,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
   private static final String TAG = "MainActivity";
   private SectionsPageAdapter mSectionsPageAdapter;
   private ViewPager mViewPager;
+  private int[] tabicons = {
+          R.drawable.home_btn
+  };
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,10 +37,11 @@ public class MainActivity extends AppCompatActivity {
 
     TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
     tabLayout.setupWithViewPager(mViewPager);
+    tabLayout.getTabAt(0).setIcon(tabicons[0]);
   }
   private void setupViewPager(ViewPager viewPager){
     SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-    adapter.addFragment(new HomeFragment(), "Home");
+    adapter.addFragment(new HomeFragment(), "");
     adapter.addFragment(new TestFragment(), "Teste");
     viewPager.setAdapter(adapter);
   }
