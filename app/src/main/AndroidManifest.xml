@@ -4,15 +4,15 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icone"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/icone_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PesobApp">
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main"
+            android:label="@string/app_name"
             android:theme="@style/Theme.PesobApp.NoActionBar">
             <intent-filter>
                     <action android:name="android.intent.action.MAIN" />
