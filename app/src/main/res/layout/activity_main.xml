@@ -30,8 +30,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:background="@color/aquaMarine"
-                app:tabIconTint="@color/black"
+                android:background="@color/vermelhoLogo"
+                app:tabIconTint="@color/white"
                 app:tabIndicatorColor="@color/white"
                 app:tabSelectedTextColor="@color/white" />
         </com.google.android.material.card.MaterialCardView>
