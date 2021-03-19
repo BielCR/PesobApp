@@ -12,12 +12,21 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class telaFogo extends AppCompatActivity {
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+
+public class telaFogo extends AppCompatActivity implements OnMapReadyCallback {
     private ImageButton btnHome;
     private TextView gpsText;
     private Button testeBtn;
@@ -28,12 +37,22 @@ public class telaFogo extends AppCompatActivity {
     private LocationManager configGPS;
     private double lat, longi;
 
+    //atributos do google maps
+    private GoogleMap googleMap;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_fogo);
-
         btnHome = (ImageButton) findViewById(R.id.homeBtn);
+
+        gpsText = (TextView) findViewById(R.id.textoGps);
+        testeBtn = (Button) findViewById(R.id.btnteste);
+        configuraGPS();
+        mostraMapa();
+
+
         Intent home = new Intent(this, MainActivity.class);
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,14 +60,6 @@ public class telaFogo extends AppCompatActivity {
                 startActivity(home);
             }
         });
-
-
-        gpsText = (TextView) findViewById(R.id.textoGps);
-        testeBtn = (Button) findViewById(R.id.btnteste);
-
-
-        configuraGPS();
-        configuraGMaps();
 
 
 
@@ -98,6 +109,28 @@ public class telaFogo extends AppCompatActivity {
     }
 
     private void configuraGMaps(){
+        SupportMapFragment fragmentomapa = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapaGoogle);
+        fragmentomapa.getMapAsync(this);
 
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googlemap){
+        googleMap = googlemap;
+
+       LatLng atual = new LatLng(posicaoAtual.getLatitude(), posicaoAtual.getLongitude()) ;
+        googleMap.addMarker(new MarkerOptions().position(atual));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(atual));
+
+    }
+
+    private void mostraMapa(){
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                configuraGMaps();
+            }
+        }, 5000);
     }
 }
