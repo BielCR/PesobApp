@@ -1,25 +1,34 @@
 package com.example.pesobapp;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
     private static final String TAG = "MainActivity";
-    private SectionsPageAdapter mSectionsPageAdapter;
-    private ViewPager mViewPager;
-    private int[] tabicons = {
-            R.drawable.home_button,
-            R.drawable.camera_button,
-            R.drawable.info_button
-    };
+    private ImageButton btnFogo;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,23 +36,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: Starting");
 
-        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-        //Defindo o ViewPager com os SectionsAdapter
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        setupViewPager(mViewPager);
+        //iniciando a intent
+        Intent fogo = new Intent(this, telaFogo.class);
+        btnFogo = (ImageButton) findViewById(R.id.fogoBtn);
+        btnFogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(fogo);
+            }
+        });
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
-        tabLayout.getTabAt(0).setIcon(tabicons[0]);
-        tabLayout.getTabAt(1).setIcon(tabicons[1]);
-        tabLayout.getTabAt(2).setIcon(tabicons[2]);
+
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new HomeFragment(), "");
-        adapter.addFragment(new fireFragment(), "");
-        adapter.addFragment(new InfoFragment(), "");
-        viewPager.setAdapter(adapter);
-    }
+
 }
