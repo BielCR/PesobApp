@@ -53,23 +53,19 @@
                 android:id="@+id/homeBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/vermelhoLogo"
-                android:src="@drawable/ic_baseline_home_24" />
+                android:background="@drawable/click_button"
+                android:src="@drawable/ic_baseline_home_24"
+                android:layout_weight="1"/>
 
-            <ImageButton
-                android:id="@+id/fogoBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="70dp"
-                android:background="@color/vermelhoLogo"
-                android:src="@drawable/ic_baseline_whatshot_24" />
+
 
             <ImageButton
                 android:id="@+id/infoBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/vermelhoLogo"
-                android:src="@drawable/ic_baseline_info_24" />
+                android:background="@drawable/click_button"
+                android:src="@drawable/ic_baseline_info_24"
+                android:layout_weight="1"/>
 
         </LinearLayout>
     </RelativeLayout>

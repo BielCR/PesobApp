@@ -18,10 +18,12 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -104,7 +106,7 @@ public class telaFogo extends AppCompatActivity implements OnMapReadyCallback {
 
     @SuppressLint("MissingPermission")
     private void iniciaGPS(){
-        configGPS.requestLocationUpdates(configGPS.GPS_PROVIDER, 5000, (float) 2, gpsObservador);
+        configGPS.requestLocationUpdates(configGPS.GPS_PROVIDER, 1000, (float) 2, gpsObservador);
 
     }
 
@@ -118,10 +120,10 @@ public class telaFogo extends AppCompatActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googlemap){
         googleMap = googlemap;
 
-       LatLng atual = new LatLng(posicaoAtual.getLatitude(), posicaoAtual.getLongitude()) ;
+        LatLng atual = new LatLng(posicaoAtual.getLatitude(), posicaoAtual.getLongitude()) ;
         googleMap.addMarker(new MarkerOptions().position(atual));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(atual));
-
+        CameraPosition c = new CameraPosition(atual, 15, 0, 0);
+        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(c));
     }
 
     private void mostraMapa(){
