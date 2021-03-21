@@ -47,6 +47,11 @@ public class TelaFogo extends AppCompatActivity implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_fogo);
 
+        //pegando os valores da intent
+        Intent intent = getIntent();
+        lat = intent.getDoubleExtra("latitude", 0);
+        longi = intent.getDoubleExtra("longitude", 0);
+
         gpsText = (TextView) findViewById(R.id.textoGps);
         testeBtn = (Button) findViewById(R.id.btnteste);
         configuraGPS();
@@ -78,7 +83,8 @@ public class TelaFogo extends AppCompatActivity implements OnMapReadyCallback {
         gpsObservador = new LocationListener() {
             @Override
             public void onLocationChanged(@NonNull Location location) {
-                posicaoAtual = location;
+                lat = location.getLatitude();
+                longi = location.getLongitude();
                 gpsText.setText(location.getLatitude() + " / " + location.getLongitude());
 
             }
@@ -127,7 +133,7 @@ public class TelaFogo extends AppCompatActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googlemap) {
         googleMap = googlemap;
 
-        LatLng atual = new LatLng(posicaoAtual.getLatitude(), posicaoAtual.getLongitude());
+        LatLng atual = new LatLng(lat, longi);
         googleMap.addMarker(new MarkerOptions().position(atual));
         CameraPosition c = new CameraPosition(atual, 15, 0, 0);
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(c));

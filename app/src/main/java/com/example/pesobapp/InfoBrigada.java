@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 public class InfoBrigada extends AppCompatActivity {
     private static final String TAG = "InfoBrigada";
     private ImageButton btnFogo, btnHome;
+    private double lat, longi;
 
 
     @Override
@@ -21,8 +22,15 @@ public class InfoBrigada extends AppCompatActivity {
         setContentView(R.layout.activity_info_brigada);
         Log.d(TAG, "onCreate: Starting");
 
+        //pegando os valores da intent
+        Intent intent = getIntent();
+        lat = intent.getDoubleExtra("latitude", 0);
+        longi = intent.getDoubleExtra("longitude", 0);
+
         //iniciando a intent
         Intent fogo = new Intent(this, TelaFogo.class);
+        fogo.putExtra("latitude", lat);
+        fogo.putExtra("longitude",longi);
         btnFogo = (ImageButton) findViewById(R.id.fogoBtn);
         btnFogo.setOnClickListener(new View.OnClickListener() {
             @Override
