@@ -1,9 +1,5 @@
 package com.example.pesobapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -17,7 +13,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -26,11 +33,17 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class TelaFogo extends AppCompatActivity implements OnMapReadyCallback {
     private ImageButton btnHome, btnInf;
     private TextView gpsText;
-    private Button testeBtn;
+    private Button denunciaBtn;
 
     //atributos relacionados a posicao
     private LocationListener gpsObservador;
@@ -53,7 +66,7 @@ public class TelaFogo extends AppCompatActivity implements OnMapReadyCallback {
         longi = intent.getDoubleExtra("longitude", 0);
 
         gpsText = (TextView) findViewById(R.id.textoGps);
-        testeBtn = (Button) findViewById(R.id.btnteste);
+        denunciaBtn = (Button) findViewById(R.id.denuncia);
         configuraGPS();
         mostraMapa();
 
@@ -73,6 +86,13 @@ public class TelaFogo extends AppCompatActivity implements OnMapReadyCallback {
             @Override
             public void onClick(View v) {
                 startActivity(inf);
+            }
+        });
+
+        denunciaBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cadastroNovaDenuncia();
             }
         });
 
@@ -147,5 +167,53 @@ public class TelaFogo extends AppCompatActivity implements OnMapReadyCallback {
                 configuraGMaps();
             }
         }, 5000);
+    }
+
+    private void cadastroNovaDenuncia() {
+        RequestQueue pilha = Volley.newRequestQueue(this);
+
+
+        //inserindo denuncia no banco de dados
+        String url = GlobaVar.urlServidor + "/local";
+        StringRequest jsonRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //resultado enviado do servido para o app
+                try {
+                    JSONObject resposta = new JSONObject(response);
+                    //cod , info
+
+                    //200 significa sucesso
+                    if (resposta.getInt("cod") == 200) {
+                        Toast.makeText(TelaFogo.this, "Envio feito com sucesso",
+                                Toast.LENGTH_LONG).show();
+
+                    } else {
+                        //algo de errado aconteceu
+                        Toast.makeText(TelaFogo.this, resposta.getString("info"),
+                                Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException ex) {
+                    //erro no formato Json enviado pelo servidor
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Toast.makeText(TelaFogo.this, "verifique sua conxão com a internet", Toast.LENGTH_LONG);
+            }
+        }){
+            protected Map<String, String> getParams(){
+                Map<String, String> parametros = new HashMap<>();
+                parametros.put("servico", "envio");
+                parametros.put("latitude", lat+"");
+                parametros.put("longitude", longi+"");
+                return parametros;
+            }
+        };
+        pilha.add(jsonRequest);
+
     }
 }

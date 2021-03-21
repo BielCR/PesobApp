@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="false"
@@ -21,8 +22,14 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="${mapsApiKey}"/>
 
-        <activity android:name=".TelaFogo"></activity>
-        <activity android:name=".InfoBrigada"></activity>
+        <activity
+            android:name=".TelaFogo"
+            android:theme="@style/Theme.PesobApp.NoActionBar"
+            ></activity>
+        <activity
+            android:name=".InfoBrigada"
+            android:theme="@style/Theme.PesobApp.NoActionBar"
+            ></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
