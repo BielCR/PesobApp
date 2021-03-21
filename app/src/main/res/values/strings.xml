@@ -1,6 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Brigada Pocket</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <string name="info_pesob">O Parque Estadual Serra do Ouro Branco é uma área de preservação ambiental, de utilidade pública e de interesse social, com 7.520 hectares, situada nos municípios de Ouro Branco e Ouro Preto, em Minas Gerais.</string>
+    <string name="info_objetivo">Preservação de ecossistemas naturais de grande relevância ecológica e beleza cênica, possibilitando a realização de pesquisas cientificas e o desenvolvimento de atividades de educação e interpretação ambiental.</string>
+    <string name="info_aspectos1">A cobertura vegetal do Parque é constituída por Campos Rupestres e de Altitude, nas mais baixas
+        altitudes, as Matas de Galeria, que ocupam as margens dos cursos d`água e os Capões, além de importantes remanescentes de
+        mata atlântica, representados pela fitofisionomia de floresta estacional semidecidual. A vegetação na região é extremamente
+        variada e diversa e seu grau de endemismo é um dos maiores de toda a cadeia do espinhaço.</string>
+    <string name="info_aspectos2">A formação geológica Serra do Ouro Branco é importante divisor de águas de três grandes sub-bacias de importantes bacias
+        hidrográficas federais, a saber: sub-bacia do Rio das Velhas e sub-bacia do Rio Paraopeba, da bacia do Rio São Francisco e;
+        sub-bacia do Rio Piranga da bacia do Rio Doce.</string>
 </resources>
