@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".telaFogo">
+    tools:context=".TelaFogo">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,21 +16,22 @@
             android:id="@+id/textoGps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="..."
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:text="..." />
+
         <Button
             android:id="@+id/btnteste"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TESTE"
             android:layout_gravity="center"
-            android:layout_marginVertical="15dp"/>
+            android:layout_marginVertical="15dp"
+            android:text="TESTE" />
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/mapaGoogle"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:name="com.google.android.gms.maps.SupportMapFragment"/>
+            android:layout_height="match_parent" />
 
 
     </LinearLayout>
@@ -53,19 +54,18 @@
                 android:id="@+id/homeBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/click_button"
-                android:src="@drawable/ic_baseline_home_24"
-                android:layout_weight="1"/>
-
+                android:src="@drawable/ic_baseline_home_24" />
 
 
             <ImageButton
                 android:id="@+id/infoBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/click_button"
-                android:src="@drawable/ic_baseline_info_24"
-                android:layout_weight="1"/>
+                android:src="@drawable/ic_baseline_info_24" />
 
         </LinearLayout>
     </RelativeLayout>

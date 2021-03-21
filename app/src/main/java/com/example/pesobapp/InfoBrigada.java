@@ -10,15 +10,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
-    private ImageButton btnFogo, btnInf;
+public class InfoBrigada extends AppCompatActivity {
+    private static final String TAG = "InfoBrigada";
+    private ImageButton btnFogo, btnHome;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_info_brigada);
         Log.d(TAG, "onCreate: Starting");
 
         //iniciando a intent
@@ -30,13 +30,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(fogo);
             }
         });
-
-        btnInf = (ImageButton) findViewById(R.id.infoBtn);
-        Intent inf = new Intent(this, InfoBrigada.class);
-        btnInf.setOnClickListener(new View.OnClickListener() {
+        btnHome = (ImageButton) findViewById(R.id.homeBtn);
+        Intent home = new Intent(this, MainActivity.class);
+        btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(inf);
+                startActivity(home);
             }
         });
 

@@ -10,4 +10,5 @@
     <color name="aquaMarine">#66CDAA</color>
     <color name="actionBar">#7feb91</color>
     <color name="vermelhoLogo">#ac0d0d</color>
+    <color name="vermelhoPressed">#7d0a0a</color>
 </resources>
