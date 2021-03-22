@@ -7,10 +7,68 @@
     tools:context=".MainActivity">
 
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingVertical="15dp">
+
+            <!--titulo da pagina-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="27sp"
+                android:fontFamily="@font/lm_bold"
+                android:text="Brigada Pocket"
+                android:textAlignment="center"
+                android:textColor="@color/vermelhoLogo"/>
+
+            <!--corpo-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="315dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/lm_medium_italic"
+                android:gravity="center"
+                android:text="@string/corpo_home"
+                android:textSize="19sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="27sp"
+                android:fontFamily="@font/lm_bold"
+                android:text="Apoio"
+                android:textAlignment="center"
+                android:textColor="@color/vermelhoLogo"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="15dp">
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="250dp"
+                android:layout_weight="1"
+                android:src="@mipmap/ifmg" />
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="250dp"
+                    android:layout_weight="1"
+                    android:src="@mipmap/images" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
 
         <!--Botoes-->
         <LinearLayout
